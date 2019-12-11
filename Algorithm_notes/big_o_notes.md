@@ -5,7 +5,7 @@
 | Constant    | 1             |
 | Logarithmic | log(n)        |
 | Linear      | n             |
-| Log-Linear  | n log(n)      |
+| Quasilinear / Log-Linear  | n log(n) |
 | Polynomial  | n<sup>a</sup> |
 | Exponential | a<sup>n</sup> |
 | Factorial   | n!            |
@@ -17,8 +17,37 @@
 ### How do we talk about performance?
 [Lecture Notes](https://open.appacademy.io/learn/swe-in-person/career-quest/big-o-notes)
 
-  We talk about performance based upon the size of the input and emphasize or plan for the worst-case scenario.
+  We talk about performance based upon the size of the input and emphasize or plan for the worst-case scenario. Big-O lets us directly talk about our code efficiency based on the size of the input.
 
-  Most functions, the bottle-neck is at just one step. So we focus on the slowest step, and simplify the math terms. 
+  Most functions, the bottle-neck is at just one step. So we focus on the slowest step, and simplify the math terms.
+    * Sums: Keep the term with the largest growth rate and drop the rest
+    * Products: Drop factors that don't depend on input size
+
+  Terminology and examples
+
+| **n**         | **T(f)**     | **O(f)**         |
+|---------------|--------------|------------------|
+| Size of input | Unsimplified | Big-O Simplified |
+
+
+#### Sum Simplification
+
+
+| Unsimplified                         | Simplified         |
+|--------------------------------------|--------------------|
+| T( n<sup>3</sup> + n<sup>2</sup>+n ) | O( n<sup>3</sup> ) |
+| T( 2<sup>n</sup> + n<sup>2</sup>)    | O( 2<sup>n</sup> ) |
+| T( n + log(n) )                      | O( n )             |
+| T( n! + 10<sup>n</sup> )             | O( n! )            |
+
+#### Products Simplification
+
+| Unsimplified           | Simplified          |
+|------------------------|---------------------|
+| T( 5 * n<sup>2</sup> ) | O( n<sup>2</sup> )  |
+| T( 10<sup>6</sup> * n) | O( n )              |
+| T( 5 n log(n) )        | O(n log(n) )        |
+| T( 3 )                 | O( 1 )              |
+
 
 ### What functions will blow make these?
