@@ -1,4 +1,4 @@
-### Summary of Order: From smallest use/growth rate to largest
+### Summary of common complexity class: From smallest use/growth rate (best performance) to largest growth rate/use (worst performance)
 
 | type        | O(n)          |
 |-------------|---------------|
@@ -51,3 +51,5 @@
 
 
 ### What functions will blow make these?
+
+TODO: We are at W15D1 right now. Continue with examples here.
