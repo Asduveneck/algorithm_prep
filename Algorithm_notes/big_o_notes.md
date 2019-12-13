@@ -52,4 +52,13 @@
 
 ### What functions will blow make these?
 
-TODO: We are at W15D1 right now. Continue with examples here.
+  You should pay attention to whether you have recursion, whether you halve/reduce size of the input, and whether you iterate.
+
+  Recursive makes things expoential, halving or reducing your input each time makes it logarithmic, and iteration makes it linear.
+
+### Recursion
+
+  1. Identify and code out your base case. Handle arguments trivially small.
+  2. Solve the next level, using your base case.
+  3. Generalize 2 until you can handle it automatically.
+
