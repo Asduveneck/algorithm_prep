@@ -1,14 +1,14 @@
 ### Summary of common complexity class: From smallest use/growth rate (best performance) to largest growth rate/use (worst performance)
 
-| type        | O(n)          |
-|-------------|---------------|
-| Constant    | 1             |
-| Logarithmic | log(n)        |
-| Linear      | n             |
-| Quasilinear / Log-Linear  | n log(n) |
-| Polynomial  | n<sup>a</sup> |
-| Exponential | a<sup>n</sup> |
-| Factorial   | n!            |
+| type        | O(n)          | Summary | Example |
+|-------------|---------------|--------------------------------------------------------------------------------------------------|---------------------------------------------|
+| Constant    | 1             | No relation between input size and performance | Key into a JS object |
+| Logarithmic | log(n)        | Typically log(2); we halve input each time | Binary Search |
+| Linear      | n             | Touch each element once. Typically iterate through input without nested loops/recursion | Check if element exists in an array |
+| Quasilinear / Log-Linear  | n log(n) | Combines linear and logarithmic behavior. Ex: Halve input each time, but also do some iterations | mergeSort, quickSort |
+| Polynomial  | n<sup>a</sup> | Nested Loops typically.  | Find all pairs of elements in n<sup>2</sup> |
+| Exponential | a<sup>n</sup> | Recursive Code where constant # of recursive calls per stack frame (c being # recursive calls) | Generate all subsets/combos of elements  |
+| Factorial   | n!            | Worst case. Variable # of recursive calls per stack frame.  | Permutations |
 
 * a are integers or other real numbers > 0. (typically > 1...?) 
 * Polynomial and Exponential can seem confusing, but think of the growth rate as n approaches infinity. (Or take the first derivative.)
