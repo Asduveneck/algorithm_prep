@@ -4,6 +4,6 @@
 
   We'll use memoization for recursion.
 
-I'll be working out of `../Algorithms/explore_memoization.js` and comparing ocde here
+I'll be working out of `../Algorithms/explore_memoization.js` and comparing code here
 
 ### Memoization video lectures
