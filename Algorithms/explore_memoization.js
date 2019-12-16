@@ -1,3 +1,5 @@
+// Indirect functions used for console logging and benchmarking
+
 function benchmark(callback, name = `${callback+""}`) { // Convert callback to literal string if no name provided
   console.log(`${name}`);
   console.time("time");
@@ -7,13 +9,13 @@ function benchmark(callback, name = `${callback+""}`) { // Convert callback to l
 }
 
 function consoleHeader(message = "") {
-  let newMessage = "";
+  let newMessage = ""; // goal: always have even # of digits
 
-  if(message.length % 2 === 0) {
+  if(message.length % 2 === 0) { 
     newMessage = message
-  } else {
+  } else { // If there is an odd # of characters in message, add ' ' in front 
     newMessage = " " + message
-  }
+  } 
 
   let numSpaces = (80 - newMessage.length)/2 - 1
   console.log(`\n${"#".repeat(80)}`);
@@ -21,11 +23,13 @@ function consoleHeader(message = "") {
   console.log(`${"#".repeat(80)}\n`);
 }
 
+// NON Memoized factorial function
+
 function factorial(n) {
   if (n === 1) return 1;
   return n * factorial(n - 1);
 }
-
+// benchmarking
 consoleHeader("Non-Memoized Factorial");
 benchmark(factorial(6), "factorial(6)");  // => 720, requires 6 calls
 benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
@@ -33,3 +37,23 @@ benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
 benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
 benchmark(factorial(5), "factorial(5)");  // => 120, requires 5 calls
 benchmark(factorial(7), "factorial(7)");  // => 5040, requires 7 calls
+
+// Memoized factorial function
+  let memo = {} // object to store prior results
+
+function memFactorial(n) {
+  // base cases:
+  if (n in memo) return memo[n]; // fetch stored results in memo if already there
+  if (n === 1) return 1;
+
+  // Non base cases: Store into memo, then retrieve from memo
+  memo[n] = n * memFactorial(n - 1);
+  return memo[n] // O(1) in JS
+}
+
+benchmark(memFactorial(6), "memoized factorial(6)");       // => 720, requires 6 calls
+benchmark(memFactorial(6), "memoized factorial(6) AGAIN");       // => 720, requires 1 call
+benchmark(memFactorial(5), "memoized factorial(5)");       // => 120, requires 1 call
+benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 2 calls
+
+memo;   // => { '2': 2, '3': 6, '4': 24, '5': 120, '6': 720, '7': 5040 }
