@@ -30,13 +30,13 @@ function factorial(n) {
   return n * factorial(n - 1);
 }
 // benchmarking
-consoleHeader("Non-Memoized Factorial");
-benchmark(factorial(6), "factorial(6)");  // => 720, requires 6 calls
-benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
-benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
-benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
-benchmark(factorial(5), "factorial(5)");  // => 120, requires 5 calls
-benchmark(factorial(7), "factorial(7)");  // => 5040, requires 7 calls
+// consoleHeader("Non-Memoized Factorial");
+// benchmark(factorial(6), "factorial(6)");  // => 720, requires 6 calls
+// benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
+// benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
+// benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
+// benchmark(factorial(5), "factorial(5)");  // => 120, requires 5 calls
+// benchmark(factorial(7), "factorial(7)");  // => 5040, requires 7 calls
 
 // Memoized factorial function
   let memo = {} // object to store prior results
@@ -50,9 +50,10 @@ function memFactorial(n) {
   memo[n] = n * memFactorial(n - 1);
   return memo[n] // O(1) in JS
 }
-
+consoleHeader("Memoized Factorial");
 benchmark(memFactorial(6), "memoized factorial(6)");       // => 720, requires 6 calls
-benchmark(memFactorial(6), "memoized factorial(6) AGAIN");       // => 720, requires 1 call
+benchmark(memFactorial(6), "memoized factorial(6) AGAIN 1");       // => 720, requires 1 call
+benchmark(memFactorial(6), "memoized factorial(6) AGAIN 2");       // => 720, requires 1 call
 benchmark(memFactorial(5), "memoized factorial(5)");       // => 120, requires 1 call
 benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 2 calls
 
