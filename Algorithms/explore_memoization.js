@@ -16,11 +16,9 @@ function consoleHeader(message = "") {
   }
 
   let numSpaces = (80 - newMessage.length)/2 - 1
-  console.log('\n');
-  console.log("#".repeat(80));
-  console.log(`#${" ".repeat(numSpaces)}${newMessage}${ " ".repeat(numSpaces)}#`);
-  console.log("#".repeat(80));
-  console.log('\n');
+  console.log(`\n${"#".repeat(80)}`);
+  console.log(`#${" ".repeat(numSpaces)}${newMessage}${" ".repeat(numSpaces)}#`);
+  console.log(`${"#".repeat(80)}\n`);
 }
 
 function factorial(n) {
@@ -30,6 +28,8 @@ function factorial(n) {
 
 consoleHeader("Non-Memoized Factorial");
 benchmark(factorial(6), "factorial(6)");  // => 720, requires 6 calls
+benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
+benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
 benchmark(factorial(6), "factorial(6) again");  // => 720, requires 6 calls
 benchmark(factorial(5), "factorial(5)");  // => 120, requires 5 calls
 benchmark(factorial(7), "factorial(7)");  // => 5040, requires 7 calls
