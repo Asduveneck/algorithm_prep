@@ -62,7 +62,7 @@ benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 
 
 ```
 
-  We have done some slight improvements. However, we haven't reduced our function by an order of magnitude. Additionally, we have a global variable `memo`, so we could do better.
+  We have done some slight improvements. However, we haven't reduced our function by an order of magnitude. It was originally O(n), and still is. Additionally, we have a global variable `memo`, so we could do better.
 
 ```js
 /*
@@ -84,6 +84,19 @@ function fib(n) {
 fib(6);     // => 8
 ```
 
-If we view this as a tree
+If we view this as a tree:
+
+![fib tree](Images/fib_tree.png)
+
+
+  We can see that there are roughly 2 children per node. f(6) at the top has 2 nodes, and each of the children below that has 2 children as well. So this is roughly 2^6 or 2^n in run time; we have an exponential time complexity!
+
+Where can we shave off some duplications?
+
+![fib tree with subtrees colored](Images/fib_tree_dups_colored.png)
+
+We can avoid going over duplicate trees via memoization.
+
+Code:
 
 ### Memoization video lectures

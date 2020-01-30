@@ -58,3 +58,7 @@ benchmark(memFactorial(5), "memoized factorial(5)");       // => 120, requires 1
 benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 2 calls
 
 memo;   // => { '2': 2, '3': 6, '4': 24, '5': 120, '6': 720, '7': 5040 }
+
+// Improved Memoized Fibonacci
+
+consoleHeader("Improved Memoized Fibonacci")
