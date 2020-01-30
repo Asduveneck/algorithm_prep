@@ -59,6 +59,28 @@ benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 
 
 memo;   // => { '2': 2, '3': 6, '4': 24, '5': 120, '6': 720, '7': 5040 }
 
+// Standard Fibonacci
+
+
+
 // Improved Memoized Fibonacci
 
+
+
+
+/*
+################################################################################
+#                          Improved Memoized Fibonacci                         #
+################################################################################
+*/
+
 consoleHeader("Improved Memoized Fibonacci")
+// We avoid a global variable by defining memo within the function and passing it down
+function memFib(n, memo = {}) {
+  if (n in memo) return memo[n];
+  // base case:
+  if (n === 1 || n === 2) return 1;
+
+  memo[n] = memFib(n - 1, memo) + memFib(n - 2, memo);
+  return memo[n];
+}

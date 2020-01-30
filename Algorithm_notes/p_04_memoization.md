@@ -99,4 +99,15 @@ We can avoid going over duplicate trees via memoization.
 
 Code:
 
+```js
+function memFib(n, memo = {}) {
+  if (n in memo) return memo[n];
+  // base case:
+  if (n === 1 || n === 2) return 1;
+
+  memo[n] = memFib(n - 1, memo) + memFib(n - 2, memo);
+  return memo[n];
+}
+```
+
 ### Memoization video lectures
