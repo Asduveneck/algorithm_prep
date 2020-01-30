@@ -101,13 +101,19 @@ Code:
 
 ```js
 function memFib(n, memo = {}) {
+  // base cases:
   if (n in memo) return memo[n];
-  // base case:
   if (n === 1 || n === 2) return 1;
 
   memo[n] = memFib(n - 1, memo) + memFib(n - 2, memo);
   return memo[n];
 }
 ```
+Note: We were able to store memo as an object within the function and not as a global variable!
+
+Which nodes have been removed?
+![fib tree abbreviated](Images/fib_tree_abrv.png)
+
+Now, because the tree only branches on the left side, we only need to explore a subtree fully once. We won't double check `fib(3)` or anything higher more than once. In fact, we have achieved linear run time, O(n).
 
 ### Memoization video lectures

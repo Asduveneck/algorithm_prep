@@ -21,9 +21,7 @@ function benchmark(callback, name = `${callback+""}`) {
   console.log('\n');
 };
 
-*/
-
-
+// Not as clean output and harder to follow... and inaccurate
 function benchmark(callback, name = `${callback+""}`) { // Convert callback to literal string if no name provided
   console.log(`${name}`);
   console.time(`${name}`);
@@ -31,6 +29,18 @@ function benchmark(callback, name = `${callback+""}`) { // Convert callback to l
   console.timeEnd(`${name}`);
   console.log('\n');
 }
+*/
+
+function benchmark(callback, name = `${callback + ""}`) {
+  console.log(`${name}`);
+  let t0 = performance.now();
+  let result = callback;
+  let t1 = performance.now();
+  console.log(`\t${result}`);
+  console.log(`time: ${t1 - t0}ms`);
+  console.log('\n');
+};
+
 
 function consoleHeader(message = "") {
   let newMessage = ""; // goal: always have even # of digits
@@ -91,10 +101,10 @@ function fib(n) {
 }
 
 consoleHeader("Fibonacci");
-benchmark(fib(6), "fib(6) Rep 1");
-benchmark(fib(6), "fib(6) Rep 2");
-benchmark(fib(50), "fib(50) Rep 1");
-benchmark(fib(50), "fib(50) Rep 2");
+benchmark(() => fib(6), "fib(6) Rep 1");
+benchmark(() => fib(6), "fib(6) Rep 2");
+benchmark(() => fib(50), "fib(50) Rep 1");
+benchmark(() => fib(50), "fib(50) Rep 2");
 
 
 
