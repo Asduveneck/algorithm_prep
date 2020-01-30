@@ -173,5 +173,5 @@ benchmark(() => memFib(45), "memFib(45) Rep 2");
   Take home message:
 
 You have to conceptually understand why your code is inefficient. If you know it's inefficient due to some repetitive, you can duplicate it. 
-
+Memoization is formulaic, and all you are doing is creating an object to store results, and return them if it's in the object you made. It's easy.
 Worry about your own current stack frame. If you try to memoize another frame, you may duplicate keys in your tree, which defeats the purpose and efficiency of memoization.
