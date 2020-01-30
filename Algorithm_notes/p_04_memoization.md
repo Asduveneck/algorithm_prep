@@ -53,12 +53,12 @@ function memFactorial(n) {
 #                              Memoized Factorial                              #
 ################################################################################
 */
-
-benchmark(memFactorial(6), "memoized factorial(6)");       // => 720, requires 6 calls, time: 0.975ms
-benchmark(memFactorial(6), "memoized factorial(6) AGAIN 1");       // => 720, requires 1 call, time: 0.070ms
-benchmark(memFactorial(6), "memoized factorial(6) AGAIN 2");       // => 720, requires 1 call, time: 0.057ms
-benchmark(memFactorial(5), "memoized factorial(5)");       // => 120, requires 1 call, time: 0.097ms
-benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 2 calls, time: 0.052ms
+// timeStart and timeEnd were horribly inaccurate when testing on larger inputs...
+benchmark(memFactorial(6), "memoized factorial(6)");       // => 720, requires 6 calls
+benchmark(memFactorial(6), "memoized factorial(6) AGAIN 1");       // => 720, requires 1 call
+benchmark(memFactorial(6), "memoized factorial(6) AGAIN 2");       // => 720, requires 1 call
+benchmark(memFactorial(5), "memoized factorial(5)");       // => 120, requires 1 call
+benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 2 calls
 
 ```
 
