@@ -1,5 +1,5 @@
 // Indirect functions used for console logging and benchmarking
-const {performance} = require('perf_hooks');
+// const {performance} = require('perf_hooks');
 
 /* Previously:
 
@@ -21,16 +21,6 @@ function benchmark(callback, name = `${callback+""}`) {
   console.log('\n');
 };
 
-// Not as clean output and harder to follow... and inaccurate
-function benchmark(callback, name = `${callback+""}`) { // Convert callback to literal string if no name provided
-  console.log(`${name}`);
-  console.time(`${name}`);
-  console.timeLog(`${name}`, callback);
-  console.timeEnd(`${name}`);
-  console.log('\n');
-}
-*/
-
 function benchmark(callback, name = `${callback + ""}`) {
   console.log(`${name}`);
   let t0 = performance.now();
@@ -41,6 +31,23 @@ function benchmark(callback, name = `${callback + ""}`) {
   console.log('\n');
 };
 
+// Not as clean output and harder to follow... and inaccurate
+function benchmark(callback, name = `${callback+""}`) { // Convert callback to literal string if no name provided
+  console.log(`${name}`);
+  console.time(`${name}`);
+  console.timeLog(`${name}`, callback);
+  console.timeEnd(`${name}`);
+  console.log('\n');
+}
+*/
+
+function benchmark(callback, name = `${callback + ""}`) { // Convert callback to literal string if no name provided
+  console.log(`${name}`);
+  console.time("time");
+  console.log(`\t${callback()}`);
+  console.timeEnd("time");
+  console.log('\n');
+}
 
 function consoleHeader(message = "") {
   let newMessage = ""; // goal: always have even # of digits
@@ -93,6 +100,9 @@ function memFactorial(n) {
 
 memo;   // => { '2': 2, '3': 6, '4': 24, '5': 120, '6': 720, '7': 5040 }
 
+
+// ########################################
+
 // Standard Fibonacci
 
 function fib(n) {
@@ -103,8 +113,10 @@ function fib(n) {
 consoleHeader("Fibonacci");
 benchmark(() => fib(6), "fib(6) Rep 1");
 benchmark(() => fib(6), "fib(6) Rep 2");
-benchmark(() => fib(50), "fib(50) Rep 1");
-benchmark(() => fib(50), "fib(50) Rep 2");
+benchmark(() => fib(30), "fib(30) Rep 1");
+benchmark(() => fib(30), "fib(30) Rep 2");
+benchmark(() => fib(45), "fib(45) Rep 1");
+benchmark(() => fib(45), "fib(45) Rep 2");
 
 
 
@@ -129,3 +141,11 @@ function memFib(n, memo = {}) {
   memo[n] = memFib(n - 1, memo) + memFib(n - 2, memo);
   return memo[n];
 }
+
+consoleHeader("Memoized Fib");
+benchmark(() => memFib(6), "memFib(6) Rep 1");
+benchmark(() => memFib(6), "memFib(6) Rep 2");
+benchmark(() => memFib(30), "memFib(30) Rep 1");
+benchmark(() => memFib(30), "memFib(30) Rep 2");
+benchmark(() => memFib(45), "memFib(45) Rep 1");
+benchmark(() => memFib(45), "memFib(45) Rep 2");

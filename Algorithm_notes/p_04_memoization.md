@@ -62,7 +62,13 @@ benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 
 
 ```
 
-  We have done some slight improvements. However, we haven't reduced our function by an order of magnitude. It was originally O(n), and still is. Additionally, we have a global variable `memo`, so we could do better.
+  We have done some slight improvements. However, we haven't reduced our function by an order of magnitude. It was originally O(n), and still is in the worst case when it's invoked for the first time. Additionally, we have a global variable `memo`, so we could do better.
+
+  The first time we run memFactorial(6), our `memo` is actually:
+```js
+{ '2': 2, '3': 6, '4': 24, '5': 120, '6': 720 }
+```
+  and that is why subsequent calls speed up execution.
 
 ```js
 /*
@@ -80,8 +86,6 @@ function fib(n) {
     if (n === 1 || n === 2) return 1;
     return fib(n - 1) + fib(n - 2);
 }
-
-fib(6);     // => 8
 ```
 
 If we view this as a tree:
@@ -115,5 +119,44 @@ Which nodes have been removed?
 ![fib tree abbreviated](Images/fib_tree_abrv.png)
 
 Now, because the tree only branches on the left side, we only need to explore a subtree fully once. We won't double check `fib(3)` or anything higher more than once. In fact, we have achieved linear run time, O(n).
+
+Let's compare (2 reps is clearly not enough for a benchmark but whatever...)
+
+| Input 	| fib(Input)  	| memFib(Input) 	|
+|-------	|-------------	|---------------	|
+| 6     	| 0.295ms     	| 0.537ms       	|
+| 6     	| 0.156ms     	| 0.111ms       	|
+| 30    	| 21.149ms    	| 0.091ms       	|
+| 30    	| 8.067ms     	| 0.197ms       	|
+| 45    	| 10845.889ms 	| 0.075ms       	|
+| 45    	| 13513.034ms 	| 0.080ms       	|
+
+Clearly, memoization helped quite a bit.
+
+<details> 
+<summary> Code snippets </summary>
+
+Nonmemoized:
+```js
+consoleHeader("Fibonacci");
+benchmark(() => fib(6), "fib(6) Rep 1");
+benchmark(() => fib(6), "fib(6) Rep 2");
+benchmark(() => fib(30), "fib(30) Rep 1");
+benchmark(() => fib(30), "fib(30) Rep 2");
+benchmark(() => fib(45), "fib(45) Rep 1");
+benchmark(() => fib(45), "fib(45) Rep 2");
+```
+Memoized:
+```js
+consoleHeader("Memoized Fib");
+benchmark(() => memFib(6), "memFib(6) Rep 1");
+benchmark(() => memFib(6), "memFib(6) Rep 2");
+benchmark(() => memFib(30), "memFib(30) Rep 1");
+benchmark(() => memFib(30), "memFib(30) Rep 2");
+benchmark(() => memFib(45), "memFib(45) Rep 1");
+benchmark(() => memFib(45), "memFib(45) Rep 2");
+```
+
+</details>
 
 ### Memoization video lectures
