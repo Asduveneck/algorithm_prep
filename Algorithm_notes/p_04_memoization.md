@@ -113,14 +113,18 @@ function memFib(n, memo = {}) {
   return memo[n];
 }
 ```
-Note: We were able to store memo as an object within the function and not as a global variable!
+Note: We were able to store memo as an object within the function and not as a global variable! The memo gets initialized in the top level when it is first invoked, and because in JS, arrays and objects are referenced, we don't have to worry about the global scope.
 
 Which nodes have been removed?
 ![fib tree abbreviated](Images/fib_tree_abrv.png)
 
 Now, because the tree only branches on the left side, we only need to explore a subtree fully once. We won't double check `fib(3)` or anything higher more than once. In fact, we have achieved linear run time, O(n).
 
-Let's compare (2 reps is clearly not enough for a benchmark but whatever...)
+**Let's compare (2 reps is clearly not enough for a benchmark but whatever...)**
+
+| nonMem | Mem |
+|------- | --- |
+|![fib tree](Images/fib_tree.png) | ![fib tree abbreviated](Images/fib_tree_abrv.png) |
 
 | Input 	| fib(Input)  	| memFib(Input) 	|
 |-------	|-------------	|---------------	|
@@ -159,4 +163,15 @@ benchmark(() => memFib(45), "memFib(45) Rep 2");
 
 </details>
 
-### Memoization video lectures
+
+### Memoization video lectures and Take home message
+
+  Same code, but throws in useful console logs to let you know if you are triggering a retrieval from the memo object.
+
+
+
+  Take home message:
+
+You have to conceptually understand why your code is inefficient. If you know it's inefficient due to some repetitive, you can duplicate it. 
+
+Worry about your own current stack frame. If you try to memoize another frame, you may duplicate keys in your tree, which defeats the purpose and efficiency of memoization.
