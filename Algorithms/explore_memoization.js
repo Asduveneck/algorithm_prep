@@ -50,16 +50,27 @@ function memFactorial(n) {
   memo[n] = n * memFactorial(n - 1);
   return memo[n] // O(1) in JS
 }
-consoleHeader("Memoized Factorial");
-benchmark(memFactorial(6), "memoized factorial(6)");       // => 720, requires 6 calls
-benchmark(memFactorial(6), "memoized factorial(6) AGAIN 1");       // => 720, requires 1 call
-benchmark(memFactorial(6), "memoized factorial(6) AGAIN 2");       // => 720, requires 1 call
-benchmark(memFactorial(5), "memoized factorial(5)");       // => 120, requires 1 call
-benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 2 calls
+// consoleHeader("Memoized Factorial");
+// benchmark(memFactorial(6), "memoized factorial(6)");       // => 720, requires 6 calls
+// benchmark(memFactorial(6), "memoized factorial(6) AGAIN 1");       // => 720, requires 1 call
+// benchmark(memFactorial(6), "memoized factorial(6) AGAIN 2");       // => 720, requires 1 call
+// benchmark(memFactorial(5), "memoized factorial(5)");       // => 120, requires 1 call
+// benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 2 calls
 
 memo;   // => { '2': 2, '3': 6, '4': 24, '5': 120, '6': 720, '7': 5040 }
 
 // Standard Fibonacci
+
+function fib(n) {
+  if (n === 1 || n === 2) return 1;
+  return fib(n - 1) + fib(n - 2);
+}
+
+consoleHeader("Fibonacci");
+benchmark(fib(6), "fib(6) Rep 1")
+benchmark(fib(6), "fib(6) Rep 2")
+benchmark(fib(6), "fib(50) Rep 1")
+benchmark(fib(6), "fib(50) Rep 2")
 
 
 
