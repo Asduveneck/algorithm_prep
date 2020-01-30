@@ -16,8 +16,29 @@
 // lucasNumber(3)   // => 4
 // lucasNumber(5)   // => 11
 // lucasNumber(9)   // => 76
-function lucasNumber(n) {
 
+// First attempt non memo
+/*
+function lucasNumber(n) {
+  // fancy fibsequence basically
+
+  //base case
+  if (n === 0) return 2;
+  if (n === 1) return 1;
+
+  return lucasNumber(n - 1) + lucasNumber(n - 2);
+}
+*/
+
+function lucasNumber(n, memo = {}) {
+  // fancy fibsequence basically
+
+  // base case
+  if (n === 0) return 2;
+  if (n === 1) return 1;
+  if (n in memo) return memo[n];
+
+  return lucasNumber(n - 1, memo) + lucasNumber(n - 2, memo);
 }
 
 
@@ -33,7 +54,9 @@ function lucasNumber(n) {
 // sumArray([5, 2])         // => 7
 // sumArray([4, 10, -1, 2]) // => 15
 function sumArray(array) {
-
+  // base case
+  if (array.length === 0) return 0;
+  return array.pop() + sumArray(array);
 }
 
 
@@ -49,7 +72,9 @@ function sumArray(array) {
 // reverseString("internet")    // => "tenretni"
 // reverseString("friends")     // => "sdneirf"
 function reverseString(str) {
-
+    // same mindset as above...
+    if (str.length === 0) return "";
+    return str[str.length - 1] + reverseString(str.substring(0, str.length - 1));
 }
 
 
