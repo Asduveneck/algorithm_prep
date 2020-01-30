@@ -61,6 +61,29 @@ benchmark(memFactorial(5), "memoized factorial(5)");       // => 120, requires 1
 benchmark(memFactorial(7), "memoized factorial(7)");       // => 5040, requires 2 calls, time: 0.052ms
 
 ```
+
   We have done some slight improvements. However, we haven't reduced our function by an order of magnitude. Additionally, we have a global variable `memo`, so we could do better.
+
+```js
+/*
+################################################################################
+#                          Improved Memoized Fibonacci                         #
+################################################################################
+*/
+```
+
+What is the time complexity of the standard fibonacci sequence?
+
+Fibonacci:
+```js
+function fib(n) {
+    if (n === 1 || n === 2) return 1;
+    return fib(n - 1) + fib(n - 2);
+}
+
+fib(6);     // => 8
+```
+
+If we view this as a tree
 
 ### Memoization video lectures
