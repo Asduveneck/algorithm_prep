@@ -95,7 +95,17 @@ function reverseString(str) {
 // pow(3, 4)    // => 81
 // pow(2, -5)   // => 0.03125
 function pow(base, exponent) {
+  // Math.pow() QQ
 
+  // base:
+  if (exponent === 0) return 1;
+
+  // recursievly call pow, making exponent approach 0. Doesn't work for non-integer exponents...
+  if (exponent > 0) {
+      return base * pow(base, exponent - 1)
+  } else {
+      return 1/base * pow(base, exponent + 1)
+  }
 }
 
 
@@ -127,9 +137,44 @@ function pow(base, exponent) {
 //     1-dimensional array: ['some data']
 //     2-dimensional array: [['some data']]
 //     3-dimensional array: [[['some data']]]
-function flatten(data) {
 
+// Test input: [1, 2, [[3, 4], [5, [6]]], [7, 8]]
+/* Failed
+function flatten(data) {
+  if (typeof data !== "array") return data;
+
+  let outputArr = [];
+  for(const index in data) {
+    outputArr.concat(flatten(data[index]))
+  }
+  return outputArr;
+  // returns superfluous output.
 }
+// suspected my for loop was wrong. 
+function flatten(data) {
+  if (typeof data !== "Array") return [data];
+
+  let outputArr = [];
+  data.forEach( el => {
+    let flattened = flatten(el)
+    outputArr.push(...flattened);
+  });
+  return outputArr;
+}
+*/
+
+// their solution
+function flatten(data) {
+  if (Array.isArray(data) === false) return [data];
+
+  let outputArr = [];
+  data.forEach( el => {
+    let flattened = flatten(el)
+    outputArr.push(...flattened);
+  });
+  return outputArr;
+}
+// Mine probably failed because of the for loop and my `typeof` was wrong...
 
 // Write a function, fileFinder(directories, targetFile), that accepts an object representing directories and a string respresenting a filename.
 // The function should return true, if the file is contained anywhere in the given directories.
@@ -171,7 +216,10 @@ function flatten(data) {
 // fileFinder(desktop, 'everlong.flac');            // => true
 // fileFinder(desktop, 'sequoia.jpeg');             // => false
 function fileFinder(directories, targetFile) {
+    let status = false
+    // iterate through directories. If found, break and return true.
 
+   // else, return false and continue looking
 }
 
 
