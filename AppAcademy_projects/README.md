@@ -1,4 +1,4 @@
-Both of these projects came from App Academy online. More specifically, they came from career quest.
+All of hese projects came from App Academy online. More specifically, they came from career quest.
 
 I'm writing the code myself and will go through the solutions if I am stuck.
 
