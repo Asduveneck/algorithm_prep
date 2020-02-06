@@ -20,9 +20,51 @@
 // stepper([3, 1, 0, 5, 10]);           // => true, because we can step through elements 3 -> 5 -> 10
 // stepper([3, 4, 1, 0, 10]);           // => true, because we can step through elements 3 -> 4 -> 10
 // stepper([2, 3, 1, 1, 0, 4, 7, 8])    // => false, there is no way to step to the end
+// achieved after first minute approach from Alvin.
+/*
 function stepper(nums) {
-
+    // iterate through the array, and see if we can reach any other number. Our goal is to go as far as possible....
+    // array of all false. return last one to be true.
+    // set firs tot true. Iterate through array, and set things to true if you can proceed from there, and if the current step you're on is true.
+    let table = new Array(nums.length).fill(false);
+    table[0] = true; 
+    for (let i = 0; i < nums.length; i++) {
+        if (table[i] === true) {
+            let maxRange = nums[i];
+            for (let j = 1; j <= maxRange; j ++) {
+                table[j] = true;
+            } 
+        }
+    }
+    return table[nums.length-1];
 }
+*/
+
+// Memoization.
+
+function stepper(nums, memo = {}) {
+    // Memo part, setting key. Turning an array into strings because it's hard to pass in an array as a key...
+    let key = Strings(num);
+    if (key in memo) return memo[key]
+
+    if (nums.length === 0) return true;
+    let maxRange = nums[0];
+    for (let step = 1; step <= maxRange; step++) {
+        if (stepper(nums.slice(step), memo) ) {
+            memo[key] = true; // update memo object
+            return true; // return true if child returns true
+        }
+    }
+
+    memo[key] = false
+    return false;
+}
+
+// Why is this bad? We don't need to set the whole array to be the key. Each time, we only care about slicing the array, or which slice we're on. So that in itself will give us the # 
+// or size of the array.
+// key = nums.length;
+
+
 
 
 // Write a function, maxNonAdjacentSum(nums), that takes in an array of nonnegative numbers.
@@ -36,6 +78,7 @@ function stepper(nums) {
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
 function maxNonAdjacentSum(nums) {
+    // solve by adding iteratively...?
 
 }
 
