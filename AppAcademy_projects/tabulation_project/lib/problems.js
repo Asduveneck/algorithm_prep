@@ -77,10 +77,46 @@ function stepper(nums, memo = {}) {
 //
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
-function maxNonAdjacentSum(nums) {
-    // solve by adding iteratively...?
 
+function maxNonAdjacentSum(nums) {
+    if (nums.length === 0) return 0;
+    // solve by adding iteratively...?
+    let table = new Array(nums.length).fill(0);
+    table[0] = nums[0]; // seed first value
+
+    // let table = max adjacent sum from 0 to the end
+    for (let i = 1; i < table.length; i++) {
+         // grab the adjacent sum from the last neighbor
+        let skipLeftNeighbor = table[i - 2] === undefined ? 0 : table[i-2]; // if undefined return 0 else return the value.
+
+
+        let includeThisNum = skipLeftNeighbor + num[i]; // current position + previous adjacent sum
+        let notIncludeThisNuim = table[i-1]; // skip those and choose the adjacent sum just to our left (which included that num)...
+
+        table[i] = Math.max(includeThisNum, notIncludeThisNum);
+
+
+    }
+
+    return table[table.length - 1];
 }
+
+// memoization:
+
+function maxNonAdjacentSum(nums, memo = {}) {
+    if (nums.length === 0) return 0; // length will be our key for our memo because we slice with the start.
+    if (nums.length in memo) return memo;
+ 
+    let firstEle = nums[0];
+
+    memo[nums.length] = Math.max(
+        firstEle + maxNonAdjacentSum(nums.slice(2)),
+        maxNonAdjacentSum(nums.slice(1))
+    )
+
+    return memo[nums.length];
+}
+
 
 
 // Write a function, minChange(coins, amount), that accepts an array of coin values
