@@ -2,14 +2,14 @@ Bubble Sort is inefficient, rarely used, but provides a decent foundation to bui
 
 When we state an object *bubbles up*, we imply the item is in motion, is moving in a direction, and has a final destination.
 
-## How does the algorithm work?
+### How does the algorithm work?
 
 We pass through the array, and take each element and compare it to its right neighbor.
 If current element is larger, we swap. We repeat this indefinitely until all elements are sorted.
 
 To see if we're done, we check if we've made a swap in our last *pass* through the array. IF we didn't have to make any swaps, that implies we have a sorted array.
 
-## Code:
+### Code:
 
 <details>
 <summary>Helper function: swap </summary>
@@ -38,7 +38,7 @@ const bubbleSort = (arr) => {
       }
     }
   }
-  return true;
+  return array;
 }
 
 ```
