@@ -1,2 +1,4 @@
 # ignore every folder named node_modules regardless of scope
 */node_modules/
+# Needed to ignore node modules in Naive_sort_projects sub projects
+*/*/node_modules/ 
