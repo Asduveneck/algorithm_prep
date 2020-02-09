@@ -12,6 +12,7 @@ Selection Sort is just like bubble sort, but done in reverse, selecting the smal
 
 ### Code
 
+#### Helper Functions:
 <details>
 <summary>Helper: Finding min val</summary>
 
@@ -43,6 +44,33 @@ const swap = (arr, idx1, idx2) {
 
 </details>
 
+#### Selection Sort Code.
+
+  We use a nested loop to serve as a placeholder, then the inner loop finds the min val, and then once we've confirmed we have the new minVal, we swap the two (forcing that minVal to be in the sorted area). 
+
+  The inner loop then progresses, so we are now out of the sorted loop.
+
+```js
+
+const selectionSort = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    let minIdx = i; // place we're trying to swap
+    // start unsorted area OUTSIDE the sorted region:
+    for (let j = i+1; j < arr.length; j++) { 
+      if (arr[minIdx] > arr[j]) minIdx = j;
+    }
+
+    swap(arr, i, minIdx);
+  }
+  return arr;
+}
+
+```
+
+<!-- 
+
 <details>
 <summary></summary>
-</details>
+</details> 
+
+-->
