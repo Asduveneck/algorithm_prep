@@ -67,6 +67,11 @@ const selectionSort = (arr) => {
 
 ```
 
+#### Performance
+
+Time is O(n^2). Technically the nested loop decreases each time, so on average, for each loop in the outer, it's n/2 . It's a little faster than bubble, especially when writes/swaps are expensive, but other than that, it's still in the same (expensive) order of magnitude for time complexity.
+Space: O(1). Duh.
+
 <!-- 
 
 <details>
