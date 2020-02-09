@@ -58,7 +58,16 @@ class LinkedList {
 
     // TODO: Implement the removeTail method here
     removeTail() {
-
+        // iterate through to the 2nd to last node. Set that as the tail.
+        let node = this.head;
+        for(let i = 0; i < this.length; i++) {
+            if (i === this.length - 2) { // 2nd to last one is this one.
+                this.tail = node.next;
+                this.tail.next = null;
+                return this;
+            }
+            node = node.next;
+        }
     }
 
     // TODO: Implement the addToHead method here
