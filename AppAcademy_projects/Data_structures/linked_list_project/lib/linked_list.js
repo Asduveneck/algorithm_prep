@@ -39,7 +39,19 @@ class LinkedList {
 
     // TODO: Implement the addToTail method here
     addToTail(val) {
+        // WE reassign tail to this val? 
+        // we have to connect the tail's next to this.
 
+        // if there is a tail.
+        if (this.tail) {
+            this.tail.next = val;
+            this.tail = val;
+        } else { // no tail so we had an empty list?
+            this.head = val;
+            this.tail = val;
+        }
+        this.length += 1;
+        return this;
     }
 
     // TODO: Implement the removeTail method here
