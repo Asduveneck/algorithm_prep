@@ -57,23 +57,48 @@ class LinkedList {
     }
 
     // TODO: Implement the removeTail method here
-    removeTail() {
-        // iterate through to the 2nd to last node. Set that as the tail.
-        let node = this.head;
-        for(let i = 0; i < this.length; i++) {
-            if (i === this.length - 2) { // 2nd to last one is this one.
-                this.tail = node.next;
-                this.tail.next = null;
-                return this;
-            }
-            node = node.next;
+    removeTail() { // my forLoop was quite off and hard to track. Using aA solution as a start...
+        if (!this.head) return undefined; // If there is no head
+        // Set the new Tail and current position to be head
+        let current = this.head;
+        let newTail = current;
+        // while you can keep proceeding or iterating forward
+        while (current.next) {
+            newTail = current; // always one before the end here... creates the stagger
+            current = current.next;
         }
+
+        this.tail = newTail;
+        this.tail.next = null;
+        this.length += -1;
+
+        if (this.length === 0) {
+            this.tail = null;
+            this.head = null;
+            // this.length += -1;
+        }
+        // current is set to the very end, or the removedNode.
+        return current;
     }
 
     // TODO: Implement the addToHead method here
     addToHead(val) {
+        let newNode = new Node(val);
 
-    }
+        if (!this.head) { // this.length === 0 not working?!?
+            newNode.next = null;
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            // We need to put everything at the start.
+            let oldHead = this.head;
+            newNode.next = oldHead;
+            this.head = newNode;
+        }
+
+        length += 1;
+        return this;
+        }
 
     // TODO: Implement the removeHead method here
     removeHead() {
