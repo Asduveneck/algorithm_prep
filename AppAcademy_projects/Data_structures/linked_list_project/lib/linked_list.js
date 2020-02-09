@@ -39,16 +39,18 @@ class LinkedList {
 
     // TODO: Implement the addToTail method here
     addToTail(val) {
-        // WE reassign tail to this val? 
-        // we have to connect the tail's next to this.
+        // Initial approach wrong because I didn't take the value and put it inside a NODE
+        // I assumed the val was a node.
+
+        const newNode = new Node(val);
 
         // if there is a tail.
         if (this.tail) {
-            this.tail.next = val;
-            this.tail = val;
-        } else { // no tail so we had an empty list?
-            this.head = val;
-            this.tail = val;
+            this.tail.next = newNode;
+            this.tail = newNode;
+        } else { // no tail so we had an empty list
+            this.head = newNode;
+            this.tail = newNode;
         }
         this.length += 1;
         return this;
