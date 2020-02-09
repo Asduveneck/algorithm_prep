@@ -1,2 +1,2 @@
-recursion_project/node_modules/
-tabulation_project/node_modules/
+# ignore every folder named node_modules regardless of scope
+*/node_modules/
