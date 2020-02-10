@@ -153,7 +153,24 @@ class LinkedList {
 
     // TODO: Implement the insert method here
     insert(index, val) {
+        if (index >= this.length || index < 0) return false;
+        let newNode = new Node(val);
+        // check if we're inserting at tail
 
+        if (index === this.length - 1) {
+            let oldTail = this.tail;
+            oldTail.next = newNode;
+            this.tail = newNode;
+        }
+        // check if at head?
+
+        // Otherwise, just reset the paths leading to this
+        let prevNode = this.get(index - 1);
+        newNode.next = this.get(index);
+        prevNode.next = newNode;
+
+        this.length += 1;
+        return true;
     }
 
     // TODO: Implement the remove method here
