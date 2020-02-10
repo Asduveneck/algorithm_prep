@@ -155,14 +155,15 @@ class LinkedList {
     insert(index, val) {
         if (index >= this.length || index < 0) return false;
         let newNode = new Node(val);
-        // check if we're inserting at tail
+        // I should have used methods we defined previously...
+        // check if we're inserting at tail or head
 
-        if (index === this.length - 1) {
-            let oldTail = this.tail;
-            oldTail.next = newNode;
-            this.tail = newNode;
+        if (index === 0) {
+            this.addToHead(val); // won't this return the list itself...
+            return true;
+            // that's why you can simply reutrn !! this.addToHead(val)
         }
-        // check if at head?
+        if (index === this.length) !!this.addToTail(val); // automatically increases length
 
         // Otherwise, just reset the paths leading to this
         let prevNode = this.get(index - 1);
