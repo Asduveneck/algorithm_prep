@@ -52,7 +52,16 @@ class Stack {
   }
 
   pop() {
-
+    if (!this.bottom) return null;
+    let removedNode = this.top;
+    if (this.length === 1) {
+      this.top = null;
+      this.bottom = null;
+    } else {
+      this.top = removedNode.next;
+    }
+    this.length += -1;
+    return removedNode.value;
   }
 
   size() {
