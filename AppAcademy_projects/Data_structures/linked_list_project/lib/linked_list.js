@@ -102,7 +102,16 @@ class LinkedList {
 
     // TODO: Implement the removeHead method here
     removeHead() {
-
+        if (!this.head) return undefined; // If there is no head
+        let oldHead = this.head;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = this.head.next;
+        }
+        this.length += -1;
+        return oldHead;
     }
 
     // TODO: Implement the contains method here
