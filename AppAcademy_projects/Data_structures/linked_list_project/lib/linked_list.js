@@ -96,7 +96,7 @@ class LinkedList {
             this.head = newNode;
         }
 
-        length += 1;
+        this.length += 1; // bug was here
         return this;
         }
 
