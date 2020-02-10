@@ -36,7 +36,19 @@ class Stack {
   }
 
   push(val) {
+    let newNode = new Node(val);
 
+    if (this.length === 0) { // empty stack
+      this.top = newNode;
+      this.bottom = newNode;
+    } else {
+      let tmp = this.top;
+      newNode.next = tmp;
+      this.top = newNode;
+    }
+
+    this.length += 1;
+    return this.size();
   }
 
   pop() {
