@@ -116,7 +116,17 @@ class LinkedList {
 
     // TODO: Implement the contains method here
     contains(target) {
-
+        let foundTarget = false;
+        if (!this.head) return foundTarget;
+        let current = this.head;
+        while (current) { // keep iterating through until end
+            if (current.value === target) {
+                foundTarget = true;
+                break;
+            }
+            current = current.next; // should stop once it's undefined in the next round...
+        }
+        return foundTarget;
     }
 
     // TODO: Implement the get method here
