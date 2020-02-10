@@ -143,7 +143,11 @@ class LinkedList {
 
     // TODO: Implement the set method here
     set(index, val) {
-
+        // call this.get ? And then 
+        let target = get(index);
+        if (!target) return false;
+        target.value = val;
+        return true;
     }
 
     // TODO: Implement the insert method here
