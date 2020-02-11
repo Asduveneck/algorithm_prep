@@ -83,10 +83,44 @@ class MaxHeap() {
     if (this.array.length === 2) return this.array.pop(); // 1st ele null...
     if (this.array.length === 1) return null; // no ele: return nothing
 
-    
+    // More than 1 ele, so
+    let max = this.array[1]; // the max value
+    // remove last element and set as root (temporarily) to keep balance
+    this.array[1] = this.array.pop();
 
+    // sift new root down to keep > order going
+    this.siftDown(1);
 
+    // Return our final value
+    return max;
   }
 
+  siftDown(idx) {
+    let arr = this.array;
+
+    let lftIdx = this.getLeftChild(idx);
+    let rhtIdx = this.getRightChild(idx);
+
+    let lftVal = arr[lftIdx];
+    let rhtVal = arr[rhtIdx];
+
+    // if node missing children, turn that null into -inf so it always gets swapped
+    if (lftVal === undefined) lftVal = -Infinity;
+    if (rhtVal === undefined) rhtVal = -Infinity;
+
+    // if node is bigger than children, satisfy heap
+    if (arr[idx] > lftVal && arr[idx] > rhtVal) return;
+
+    // else, we need to sift down. swap with bigger child
+    if (lftVal < rhtVal) {
+      let swapIdx = rhtIdx
+    } else {
+      let swapIdx = lftIdx;
+    }
+
+    [ arr[idx], arr[swapIdx] ] = [ arr[swapIdx], arr[idx] ]; // swaps
+
+    this.siftDown(swapIdx); // recursively keep sifting
+  }
 }
 ```
