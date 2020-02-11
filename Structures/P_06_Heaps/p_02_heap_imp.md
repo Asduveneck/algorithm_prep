@@ -63,7 +63,7 @@ class MaxHeap {
 
     if ( this.array[idx] > this.array[parentIdx] ){
       // swap node with parent
-      [ this.array[parentIdx], this.array[idx] ] = [ this.array[idx], this.array[parentIdx] ];
+      [ this.array[parentIdx], this.array[idx] ] = [ this.array[idx], this.array[parentIdx] ]; // swaps
     }
 
     // keep sifting up until thing is in place/
@@ -113,10 +113,18 @@ class MaxHeap() {
 
     // else, we need to sift down. swap with bigger child
     if (lftVal < rhtVal) {
-      let swapIdx = rhtIdx
+      var swapIdx = rhtIdx
     } else {
-      let swapIdx = lftIdx;
+      var swapIdx = lftIdx;
     }
+
+    /*
+    let swapIdx = lftIdx; // assume left > right
+
+    if (lftVal < rhtVal) { // if assumed wrong, reassign...
+      swapIdx = rhtIdx
+    } 
+    */
 
     [ arr[idx], arr[swapIdx] ] = [ arr[swapIdx], arr[idx] ]; // swaps
 
