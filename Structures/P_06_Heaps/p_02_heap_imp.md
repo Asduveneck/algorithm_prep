@@ -75,6 +75,9 @@ class MaxHeap {
 
 ### How do we delete?
 
+  Sifting down is like sifting up in reverse. However, we have options since we have to consider children (swapping with the larger child).
+  What if our node doesn't have children too? We'll need to consider those as well.
+
 ```js
 
 class MaxHeap() {
@@ -104,11 +107,11 @@ class MaxHeap() {
     let lftVal = arr[lftIdx];
     let rhtVal = arr[rhtIdx];
 
-    // if node missing children, turn that null into -inf so it always gets swapped
+    // if node missing children, turn that null into -inf so we don't swap.
     if (lftVal === undefined) lftVal = -Infinity;
     if (rhtVal === undefined) rhtVal = -Infinity;
 
-    // if node is bigger than children, satisfy heap
+    // if node is bigger than children, or no children (both -inf) heap satisfied. BASE CASE
     if (arr[idx] > lftVal && arr[idx] > rhtVal) return;
 
     // else, we need to sift down. swap with bigger child
@@ -128,7 +131,7 @@ class MaxHeap() {
 
     [ arr[idx], arr[swapIdx] ] = [ arr[swapIdx], arr[idx] ]; // swaps
 
-    this.siftDown(swapIdx); // recursively keep sifting
+    this.siftDown(swapIdx); // recursively keep sifting, on new position
   }
 }
 ```
