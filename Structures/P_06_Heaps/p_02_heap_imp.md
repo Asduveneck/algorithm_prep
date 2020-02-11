@@ -1,0 +1,1 @@
+Heaps can be implemented using an array and carefully indexing them.
