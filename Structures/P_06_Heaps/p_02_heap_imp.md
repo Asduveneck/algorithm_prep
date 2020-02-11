@@ -132,3 +132,8 @@ class MaxHeap() {
   }
 }
 ```
+
+### Cost?
+
+Time cost for insert/delete is always O(log(n)) because balanced.
+Space: O[n] since we have an array of length n.
