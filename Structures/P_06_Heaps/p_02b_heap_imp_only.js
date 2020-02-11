@@ -35,6 +35,7 @@ class MaxHeap {
     return max; // our goal!
   }
 
+  // ===== HELPERS =====
   // Helper for inserting
   siftUp(idx) {
     // if we're at root
@@ -52,7 +53,7 @@ class MaxHeap {
     this.siftUp(parentIdx);
 
   }
-
+  // Helper for popping up
   siftDown(idx) {
     let arr = this.array;
 
