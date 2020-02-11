@@ -51,7 +51,7 @@ function depthFirst(root) {
   // While there's stuff in the stack
   while (stack.length) {
     let node = stack.pop(); // pop off the top
-    console.log(node.val); // do something with it
+    console.log(node.val); // do something with it. Visiting the node.
 
     if (node.right) stack.push(node.right); // if right child exists, push it in.
     if (node.left) stack.push(node.left); //   "" but for left
