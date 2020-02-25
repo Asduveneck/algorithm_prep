@@ -19,3 +19,7 @@ A Binary Search Tree is a binary tree, where:
 **Examples**
 
 ![Example Binary Search Trees](Images/bsts.png)
+
+### What makes BSTs important?
+
+  They're sorted, and can get the order via our print in order function (from trees p_03).

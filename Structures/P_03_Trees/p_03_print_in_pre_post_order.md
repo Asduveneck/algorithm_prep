@@ -17,3 +17,12 @@ A;B; D; (back to B), E. (Back to A). C; F;
 
 ### Code?
 
+```js
+function inOrderPrint(root) {
+    if (!root) return;
+
+    inOrderPrint(root.left);
+    console.log(root.val);
+    inOrderPrint(root.right);
+}
+```
