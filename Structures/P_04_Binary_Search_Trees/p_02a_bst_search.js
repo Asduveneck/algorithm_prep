@@ -31,4 +31,16 @@ class BST {
     }
   }
   // New:
+
+  search(val, root=this.root) {
+    if (!root) return false; // base: if empty array/tree, return false since nothing there
+
+    if (val < root.val) { // if val < root, go explore left subtree
+      return this.search(val, root.left)
+    } else if (val > root.val) {
+      return this.search(val, root.right);
+    } else {
+      return true;
+    }
+  }
 }
