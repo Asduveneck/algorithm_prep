@@ -23,3 +23,6 @@ A Binary Search Tree is a binary tree, where:
 ### What makes BSTs important?
 
   They're sorted, and can get the order via our print in order function (from trees p_03).
+
+### Naive BST Implementation
+  
