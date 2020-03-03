@@ -19,8 +19,20 @@ class BST {
       return;
     }
 
-    // If the val < root,
-    if (!root.left)
+    // If the val < root, place on left side
+    if (val < root.val) {
+      if (!root.left) { // nothing on left side yet
+        root.left = new TreeNode(val);
+      } else { // call again recursively moving down a level on left side
+        this.insert(val, root.left);
+      }
+    } else { // val > root, so place on right side
+      if (!root.right) {
+        root.right = new TreeNode(val)
+      } else {
+        this.insert(val, root.right);
+      }
+    }
 
   }
 }
